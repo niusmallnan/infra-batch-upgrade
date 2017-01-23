@@ -17,7 +17,7 @@ def cli(ctx, stack_name):
     stacks = client.list_environment(name=stack_name,
                                      state=config.STATE_UPGRADED)
     for stack in stacks:
-        print("Finish upgrade stack: %s ......" % "1st"+stack.id[2:])
+        print("Finish upgrade stack: %s ......" % ("1st"+stack.id[2:]))
         stack.finishupgrade()
 
 
