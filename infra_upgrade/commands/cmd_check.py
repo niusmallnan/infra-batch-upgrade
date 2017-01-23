@@ -15,5 +15,7 @@ def cli(ctx, stack_name):
         return
     client = config.get_global_client()
     for stack in client.list_environment(name=stack_name):
-        print("Project: %s, state: %s" % (stack.accountId, stack.state))
+        print("Project: %s, state: %s, healthState:%s" % (stack.accountId,
+                                                          stack.state,
+                                                          stack.healthState))
 
