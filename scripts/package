@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+
+REPO=${REPO:-rancher}
+cd $(dirname $0)/../package
+
+docker build -t ${REPO}/infra-upgrade-cli .
+
+echo Built ${REPO}/infra-upgrade-cli
