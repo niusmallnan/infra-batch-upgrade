@@ -15,10 +15,12 @@ def get_external_id(stack, external_id):
 @click.command('upgrade', short_help='run upgrade task')
 @click.argument('stack_name', default='')
 @click.option('--external-id', '-eid', default="")
+@click.option('environment', '-e', default={}, type=dict)
 @click.option('--docker-compose', '-dp', type=click.File('r'))
 @click.option('--rancher-compose', '-rp', type=click.File('r'))
 @pass_context
-def cli(ctx, stack_name, external_id, docker_compose, rancher_compose):
+def cli(ctx, stack_name, external_id, environment,
+        docker_compose, rancher_compose):
     if len(stack_name) == 0:
         print("Pls use a specfic stack name")
         return
@@ -33,5 +35,6 @@ def cli(ctx, stack_name, external_id, docker_compose, rancher_compose):
                                                       external_id))
         stack.upgrade(dockerCompose=docker_cp,
                       rancherCompose=rancher_cp,
+                      environment=environment,
                       externalId=external_id)
 
